@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
 <meta charset="UTF-8">
 
 <meta name="viewport"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
 <title>ليلة حنة رأفت ورنين</title>
 
@@ -15,7 +16,6 @@
     --cream-light:#fffaf3;
     --burgundy:#751824;
     --gold:#c69a50;
-    --brown:#5e352c;
 }
 
 *{
@@ -37,12 +37,18 @@ button{
     font-family:inherit;
 }
 
+/* =========================
+   GENERAL PAGE
+========================= */
+
 .page{
     width:100%;
     min-height:100svh;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     position:relative;
     overflow:hidden;
 
@@ -57,10 +63,7 @@ button{
         #fffaf3 0%,
         #f5e9d8 100%
       );
-
-    padding:20px;
 }
-
 
 /* =========================
    PAGE 1 - ENVELOPE
@@ -116,9 +119,13 @@ button{
     display:block;
 }
 
+/* الظرف المغلق */
+
 .closed-wrap{
     z-index:5;
 }
+
+/* الظرف المفتوح */
 
 .open-wrap{
     z-index:2;
@@ -126,69 +133,34 @@ button{
     opacity:0;
 
     transform:
-      translateY(35px)
-      scale(.94);
+      translateY(30px)
+      scale(.95);
 }
 
-.card-preview{
-    position:absolute;
+/* بعد الفتح */
 
-    z-index:3;
-
-    width:min(58vw,360px);
-    max-height:70svh;
-
-    object-fit:contain;
-
+.envelope-stage.opened .closed-wrap{
     opacity:0;
 
     transform:
-      translateY(130px)
-      scale(.70);
-
-    transition:
-      opacity .7s ease,
-      transform 1.35s
-      cubic-bezier(.2,.8,.2,1);
-
-    filter:
-      drop-shadow(
-        0 15px 24px
-        rgba(70,40,25,.20)
-      );
-}
-
-.envelope-stage.opened
-.closed-wrap{
-    opacity:0;
-
-    transform:
-      translateY(90px)
+      translateY(75px)
       scale(.88);
 }
 
-.envelope-stage.opened
-.open-wrap{
+.envelope-stage.opened .open-wrap{
     opacity:1;
 
     transform:
-      translateY(105px)
+      translateY(0)
       scale(1);
 }
 
-.envelope-stage.opened
-.card-preview{
-    opacity:1;
-
-    transform:
-      translateY(-100px)
-      scale(.92);
-}
+/* نص فتح الظرف */
 
 .open-message{
     position:absolute;
 
-    bottom:4%;
+    bottom:5%;
 
     color:var(--burgundy);
 
@@ -198,6 +170,8 @@ button{
     animation:pulse 1.6s infinite;
 
     text-align:center;
+
+    z-index:10;
 }
 
 @keyframes pulse{
@@ -212,7 +186,6 @@ button{
         transform:translateY(-4px);
     }
 }
-
 
 /* =========================
    BUTTONS
@@ -247,7 +220,6 @@ button{
 }
 
 .next-btn{
-
     position:absolute;
 
     bottom:20px;
@@ -259,7 +231,6 @@ button{
 
     z-index:20;
 }
-
 
 /* زر الموسيقى */
 
@@ -285,7 +256,6 @@ button{
     font-size:20px;
 }
 
-
 /* =========================
    PAGE 2 - INVITATION
 ========================= */
@@ -305,7 +275,6 @@ button{
 
     object-fit:contain;
 }
-
 
 /* =========================
    PAGE 3 - DANCE
@@ -366,11 +335,7 @@ button{
     user-select:none;
 
     pointer-events:none;
-
-    transition:
-      opacity .09s linear;
 }
-
 
 /* =========================
    PAGE 4 - COUNTDOWN
@@ -417,6 +382,8 @@ button{
     margin:
       -12px auto 25px;
 }
+
+/* العد الحقيقي */
 
 .timer{
 
@@ -484,6 +451,10 @@ button{
       clamp(12px,3vw,17px);
 }
 
+/* =========================
+   LOCATION
+========================= */
+
 .location-title{
 
     font-size:
@@ -495,11 +466,14 @@ button{
     color:var(--burgundy);
 }
 
+/* نقص الجزء العلوي من countdown.png
+   حتى ما يظهر العد الموجود داخل الصورة */
+
 .location-crop{
 
     width:min(94vw,820px);
 
-    aspect-ratio:2.2 / 1;
+    aspect-ratio:2.1 / 1;
 
     overflow:hidden;
 
@@ -521,14 +495,13 @@ button{
 .location-crop img{
 
     width:100%;
-
     height:auto;
 
     position:absolute;
 
     left:0;
 
-    top:-48%;
+    top:-46%;
 
     display:block;
 }
@@ -537,11 +510,10 @@ button{
 
     margin-top:24px;
 
-    min-width:210px;
+    min-width:220px;
 
     font-size:16px;
 }
-
 
 /* =========================
    MOBILE
@@ -549,21 +521,12 @@ button{
 
 @media(max-width:600px){
 
-    .page{
-        padding:
-          15px 10px;
-    }
-
     .envelope-stage{
         height:560px;
     }
 
     .envelope-crop{
         width:94vw;
-    }
-
-    .card-preview{
-        width:58vw;
     }
 
     .timer{
@@ -590,77 +553,50 @@ button{
 }
 
 </style>
-
 </head>
 
-
 <body>
-
 
 <!-- =========================
      MUSIC
 ========================= -->
 
 <audio id="bgMusic" loop preload="auto">
-
-    <source
-    src="music.mp3"
-    type="audio/mpeg">
-
+    <source src="music.mp3" type="audio/mpeg">
 </audio>
-
 
 <button
 class="music-btn"
 id="musicButton"
 onclick="toggleMusic()">
-
 🔊
-
 </button>
 
-
-
 <!-- =========================
-     PAGE 1
-     ENVELOPE
+     PAGE 1 - ENVELOPE
 ========================= -->
 
-<section
-class="page"
-id="cover">
-
+<section class="page" id="cover">
 
 <div
 class="envelope-stage"
 id="envelopeStage">
 
+<!-- الظرف المفتوح -->
 
-<img
-src="invitation.png"
-class="card-preview"
-alt="دعوة ليلة الحنة">
-
-
-<div
-class="envelope-crop open-wrap">
-
-<img
-src="envelope-open.png"
-alt="">
-
+<div class="envelope-crop open-wrap">
+    <img
+    src="envelope-open.png"
+    alt="الظرف المفتوح">
 </div>
 
+<!-- الظرف المغلق -->
 
-<div
-class="envelope-crop closed-wrap">
-
-<img
-src="envelope-closed.png"
-alt="افتحي الدعوة">
-
+<div class="envelope-crop closed-wrap">
+    <img
+    src="envelope-closed.png"
+    alt="افتحي الدعوة">
 </div>
-
 
 <div
 class="open-message"
@@ -670,9 +606,7 @@ id="openMessage">
 
 </div>
 
-
 </div>
-
 
 <button
 class="next-btn"
@@ -680,30 +614,24 @@ id="inviteButton"
 style="display:none"
 onclick="goToPage('invitationPage')">
 
-مشاهدة الدعوة ↓
+انزلي للدعوة ↓
 
 </button>
 
-
 </section>
 
-
-
 <!-- =========================
-     PAGE 2
-     INVITATION
+     PAGE 2 - INVITATION
 ========================= -->
 
 <section
 class="page"
 id="invitationPage">
 
-
 <img
 src="invitation.png"
 class="invitation-image"
 alt="دعوة ليلة الحنة">
-
 
 <button
 class="next-btn"
@@ -713,24 +641,18 @@ onclick="goToPage('dance')">
 
 </button>
 
-
 </section>
 
-
-
 <!-- =========================
-     PAGE 3
-     DANCE
+     PAGE 3 - DANCE
 ========================= -->
 
 <section
 class="page"
 id="dance">
 
-
 <div
 class="dance-container">
-
 
 <h2
 class="dance-title">
@@ -739,15 +661,12 @@ class="dance-title">
 
 </h2>
 
-
 <img
 src="girl1.png"
 id="dancer"
 alt="رقصة فلسطينية">
 
-
 </div>
-
 
 <button
 class="next-btn"
@@ -757,125 +676,63 @@ onclick="goToPage('location')">
 
 </button>
 
-
 </section>
 
-
-
 <!-- =========================
-     PAGE 4
-     COUNTDOWN + LOCATION
+     PAGE 4 - COUNTDOWN
 ========================= -->
 
 <section
 class="page"
 id="location">
 
-
-<h1
-class="section-title">
+<h1 class="section-title">
 
 العد التنازلي للحنّة
 
 </h1>
 
+<div class="gold-line"></div>
 
-<div
-class="gold-line">
+<div class="timer">
+
+<div class="time-box">
+<strong id="days">0</strong>
+<span>يوم</span>
 </div>
 
-
-<div
-class="timer">
-
-
-<div
-class="time-box">
-
-<strong id="days">
-0
-</strong>
-
-<span>
-يوم
-</span>
-
+<div class="time-box">
+<strong id="hours">00</strong>
+<span>ساعة</span>
 </div>
 
+<div class="time-box">
+<strong id="minutes">00</strong>
+<span>دقيقة</span>
+</div>
 
-
-<div
-class="time-box">
-
-<strong id="hours">
-00
-</strong>
-
-<span>
-ساعة
-</span>
+<div class="time-box">
+<strong id="seconds">00</strong>
+<span>ثانية</span>
+</div>
 
 </div>
 
-
-
-<div
-class="time-box">
-
-<strong id="minutes">
-00
-</strong>
-
-<span>
-دقيقة
-</span>
-
-</div>
-
-
-
-<div
-class="time-box">
-
-<strong id="seconds">
-00
-</strong>
-
-<span>
-ثانية
-</span>
-
-</div>
-
-
-</div>
-
-
-
-<h2
-class="location-title">
+<h2 class="location-title">
 
 موقع الحنّة
 
 </h2>
 
+<div class="gold-line"></div>
 
-<div
-class="gold-line">
-</div>
-
-
-
-<div
-class="location-crop">
+<div class="location-crop">
 
 <img
 src="countdown.png"
 alt="موقع الحنة">
 
 </div>
-
-
 
 <button
 class="map-btn"
@@ -885,13 +742,30 @@ onclick="openMap()">
 
 </button>
 
-
 </section>
-
-
 
 <script>
 
+/* =========================
+   ALWAYS START AT TOP
+========================= */
+
+history.scrollRestoration = "manual";
+
+window.addEventListener(
+"load",
+function(){
+
+    window.scrollTo(0,0);
+
+    document
+    .getElementById("cover")
+    .scrollIntoView({
+        behavior:"auto"
+    });
+
+}
+);
 
 /* =========================
    NAVIGATION
@@ -902,13 +776,10 @@ function goToPage(id){
     document
     .getElementById(id)
     .scrollIntoView({
-
         behavior:"smooth"
-
     });
 
 }
-
 
 /* =========================
    MUSIC
@@ -919,15 +790,12 @@ document.getElementById(
     "bgMusic"
 );
 
-
 const musicButton =
 document.getElementById(
     "musicButton"
 );
 
-
 let musicStarted=false;
-
 
 function startMusic(){
 
@@ -944,22 +812,18 @@ function startMusic(){
     .catch(function(){
 
         console.log(
-            "Audio playback blocked."
+            "Audio blocked"
         );
 
     });
 
 }
 
-
 function toggleMusic(){
 
-    if(
-        bgMusic.paused
-    ){
+    if(bgMusic.paused){
 
-        bgMusic
-        .play();
+        bgMusic.play();
 
         musicButton
         .textContent="🔊";
@@ -968,8 +832,7 @@ function toggleMusic(){
 
     else{
 
-        bgMusic
-        .pause();
+        bgMusic.pause();
 
         musicButton
         .textContent="🔇";
@@ -978,9 +841,8 @@ function toggleMusic(){
 
 }
 
-
 /* =========================
-   ENVELOPE
+   OPEN ENVELOPE
 ========================= */
 
 const envelopeStage =
@@ -988,21 +850,17 @@ document.getElementById(
     "envelopeStage"
 );
 
-
 const openMessage =
 document.getElementById(
     "openMessage"
 );
-
 
 const inviteButton =
 document.getElementById(
     "inviteButton"
 );
 
-
 let envelopeOpened=false;
-
 
 function openEnvelope(){
 
@@ -1010,21 +868,17 @@ function openEnvelope(){
         return;
     }
 
-
     envelopeOpened=true;
-
 
     envelopeStage
     .classList
     .add("opened");
 
-
     openMessage
     .style
     .display="none";
 
-
-    /* MUSIC STARTS HERE */
+    /* الموسيقى تبدأ مع أول ضغطة */
 
     if(!musicStarted){
 
@@ -1032,6 +886,7 @@ function openEnvelope(){
 
     }
 
+    /* يظهر زر النزول بعد فتح الظرف */
 
     setTimeout(
         function(){
@@ -1041,11 +896,12 @@ function openEnvelope(){
             .display="block";
 
         },
-        1450
+        900
     );
 
 }
 
+/* الضغط على كامل الظرف */
 
 envelopeStage
 .addEventListener(
@@ -1053,6 +909,7 @@ envelopeStage
     openEnvelope
 );
 
+/* دعم الموبايل */
 
 envelopeStage
 .addEventListener(
@@ -1069,7 +926,6 @@ envelopeStage
     }
 );
 
-
 /* =========================
    GIRL DANCE
 ========================= */
@@ -1079,49 +935,42 @@ document.getElementById(
     "dancer"
 );
 
-
 const frames=[
 
     "girl1.png",
-
     "girl2.png",
-
     "girl3.png",
-
     "girl4.png",
-
     "girl3.png",
-
     "girl2.png"
 
 ];
 
+/* تحميل مسبق */
 
 frames.forEach(
 function(src){
 
-    const image=
+    const image =
     new Image();
 
-    image.src=
+    image.src =
     src;
 
-});
-
+}
+);
 
 let frameIndex=0;
-
 
 setInterval(
 function(){
 
-    frameIndex=
+    frameIndex =
       (frameIndex+1)
       %
       frames.length;
 
-
-    dancer.src=
+    dancer.src =
       frames[
         frameIndex
       ];
@@ -1129,7 +978,6 @@ function(){
 },
 380
 );
-
 
 /* =========================
    COUNTDOWN
@@ -1141,7 +989,6 @@ new Date(
 )
 .getTime();
 
-
 function updateCountdown(){
 
     let distance =
@@ -1149,13 +996,11 @@ function updateCountdown(){
       -
       Date.now();
 
-
     if(distance<0){
 
         distance=0;
 
     }
-
 
     const days =
       Math.floor(
@@ -1163,7 +1008,6 @@ function updateCountdown(){
         /
         86400000
       );
-
 
     const hours =
       Math.floor(
@@ -1176,7 +1020,6 @@ function updateCountdown(){
         3600000
       );
 
-
     const minutes =
       Math.floor(
         (
@@ -1187,7 +1030,6 @@ function updateCountdown(){
         /
         60000
       );
-
 
     const seconds =
       Math.floor(
@@ -1200,14 +1042,12 @@ function updateCountdown(){
         1000
       );
 
-
     document
     .getElementById(
         "days"
     )
     .textContent =
       days;
-
 
     document
     .getElementById(
@@ -1220,7 +1060,6 @@ function updateCountdown(){
         "0"
       );
 
-
     document
     .getElementById(
         "minutes"
@@ -1231,7 +1070,6 @@ function updateCountdown(){
         2,
         "0"
       );
-
 
     document
     .getElementById(
@@ -1246,15 +1084,12 @@ function updateCountdown(){
 
 }
 
-
 updateCountdown();
-
 
 setInterval(
     updateCountdown,
     1000
 );
-
 
 /* =========================
    GOOGLE MAPS
@@ -1274,6 +1109,6 @@ function openMap(){
 
 </script>
 
-
 </body>
+
 </html>
