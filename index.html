@@ -1,1141 +1,167 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<!-- ===== فيديو فتح الدعوة ===== -->
 
-<head>
-<meta charset="UTF-8">
+<section id="videoPage">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <video
+    id="coverVideo"
+    src="envelope.mp4"
+    playsinline
+    preload="auto">
+  </video>
 
-<title>ليلة حنة رأفت ورنين</title>
+  <div id="tapText">
+    اضغطي على الكرت لفتح الدعوة ✨
+  </div>
+
+</section>
+
 
 <style>
 
-:root{
-    --cream:#f8efe2;
-    --cream2:#fffaf6;
-    --burgundy:#741b27;
-    --gold:#c79a50;
-}
-
-*{
-    box-sizing:border-box;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
-body{
-    margin:0;
-    font-family:Tahoma, Arial, sans-serif;
-    background:var(--cream);
-    color:var(--burgundy);
-    overflow:hidden;
-}
-
-#app{
-    height:100svh;
-    overflow-y:auto;
-    scroll-snap-type:y mandatory;
-    scroll-behavior:smooth;
-}
-
-.page{
-    width:100%;
-    min-height:100svh;
-
-    position:relative;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    overflow:hidden;
-
-    scroll-snap-align:start;
-
-    background:
-        radial-gradient(
-            circle at center,
-            #fffdf9,
-            #f7eddf 60%,
-            #eedcc4
-        );
-}
-
-
-/* =========================
-   PAGE 1 - VIDEO
-========================= */
-
 #videoPage{
-    flex-direction:column;
-    cursor:pointer;
+  width:100%;
+  min-height:100vh;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  position:relative;
+
+  background:#f8efe2;
+
+  cursor:pointer;
+
+  overflow:hidden;
 }
 
-.cover-video{
-    width:min(94vw,600px);
-    max-height:88svh;
+#coverVideo{
+  width:min(95vw,600px);
+  max-height:90vh;
 
-    object-fit:contain;
+  object-fit:contain;
 
-    border-radius:20px;
+  border-radius:18px;
 
-    background:#000;
-
-    box-shadow:
-        0 15px 35px
-        rgba(70,40,20,.18);
+  display:block;
 }
 
-.tap-text{
-    position:absolute;
+#tapText{
+  position:absolute;
 
-    bottom:28px;
+  bottom:25px;
 
-    width:100%;
+  width:100%;
 
-    text-align:center;
+  text-align:center;
 
-    color:var(--burgundy);
+  color:#741b27;
 
-    font-size:
-        clamp(16px,4vw,21px);
+  font-family:Tahoma,Arial,sans-serif;
 
-    animation:pulse 1.5s infinite;
+  font-size:18px;
+
+  animation:pulse 1.5s infinite;
+
+  pointer-events:none;
 }
 
 @keyframes pulse{
 
-    0%,100%{
-        opacity:.55;
-    }
-
-    50%{
-        opacity:1;
-    }
-}
-
-
-/* =========================
-   PAGE 2 - INVITATION
-========================= */
-
-#invitationPage{
-    padding:0;
-}
-
-.invitation-image{
-
-    width:100%;
-    height:100svh;
-
-    object-fit:contain;
-
-    display:block;
-
-    background:#f8efe2;
-}
-
-.swipe-hint{
-
-    position:absolute;
-
-    bottom:18px;
-
-    left:50%;
-
-    transform:translateX(-50%);
-
-    background:
-        rgba(255,250,243,.9);
-
-    border:
-        1px solid
-        rgba(116,27,39,.15);
-
-    padding:
-        9px 18px;
-
-    border-radius:999px;
-
-    color:var(--burgundy);
-
-    font-size:13px;
-
-    white-space:nowrap;
-
-    animation:upDown 1.5s infinite;
-}
-
-@keyframes upDown{
-
-    0%,100%{
-        transform:
-            translateX(-50%)
-            translateY(0);
-    }
-
-    50%{
-        transform:
-            translateX(-50%)
-            translateY(-5px);
-    }
-}
-
-
-/* =========================
-   PAGE 3 - DANCE
-========================= */
-
-#dance{
-
-    background:
-        radial-gradient(
-            circle at center,
-            #fffdf9,
-            #f8efe2 58%,
-            #eddcc5
-        );
-}
-
-.dance-wrap{
-
-    width:100%;
-    height:100svh;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    position:relative;
-}
-
-.dance-title{
-
-    position:absolute;
-
-    top:28px;
-
-    width:100%;
-
-    text-align:center;
-
-    font-size:
-        clamp(28px,7vw,46px);
-
-    color:var(--burgundy);
-}
-
-#dancer{
-
-    width:min(90vw,600px);
-
-    height:82svh;
-
-    object-fit:contain;
-
-    user-select:none;
-
-    pointer-events:none;
-}
-
-
-/* =========================
-   PAGE 4 - COUNTDOWN
-========================= */
-
-#location{
-
-    flex-direction:column;
-
-    justify-content:flex-start;
-
-    padding:
-        42px 15px 60px;
-}
-
-.section-title{
-
-    margin:
-        0 0 15px;
-
-    font-size:
-        clamp(30px,6vw,46px);
-
-    text-align:center;
-}
-
-.gold-line{
-
-    width:100px;
-    height:1px;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            var(--gold),
-            transparent
-        );
-
-    margin:
-        0 auto 25px;
-}
-
-
-/* COUNTDOWN */
-
-.timer{
-
-    width:min(94vw,700px);
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(4,1fr);
-
-    gap:10px;
-
-    direction:rtl;
-
-    margin-bottom:32px;
-}
-
-.time-box{
-
-    background:
-        rgba(255,250,243,.96);
-
-    border:
-        1px solid
-        rgba(199,154,80,.75);
-
-    border-radius:16px;
-
-    padding:
-        15px 4px;
-
-    text-align:center;
-
-    box-shadow:
-        0 7px 18px
-        rgba(80,45,25,.07);
-}
-
-.time-box strong{
-
-    display:block;
-
-    color:var(--burgundy);
-
-    font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-
-    font-size:
-        clamp(28px,6vw,48px);
-
-    line-height:1;
-}
-
-.time-box span{
-
-    display:block;
-
-    margin-top:7px;
-
-    font-size:
-        clamp(11px,3vw,17px);
-}
-
-
-/* =========================
-   LOCATION
-========================= */
-
-.location-title{
-
-    margin:
-        0 0 15px;
-
-    font-size:
-        clamp(26px,5vw,38px);
-}
-
-.location-crop{
-
-    width:min(94vw,820px);
-
-    aspect-ratio:2 / 1;
-
-    overflow:hidden;
-
-    border-radius:18px;
-
-    position:relative;
-
-    background:#f7ead8;
-
-    border:
-        1px solid
-        rgba(199,154,80,.45);
-
-    box-shadow:
-        0 10px 25px
-        rgba(70,40,20,.10);
-}
-
-.location-crop img{
-
-    position:absolute;
-
-    width:100%;
-    height:auto;
-
-    left:0;
-
-    top:-46%;
-}
-
-.map-btn{
-
-    margin-top:22px;
-
-    border:none;
-
-    border-radius:999px;
-
-    padding:14px 28px;
-
-    min-width:220px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #801d2a,
-            #5d111b
-        );
-
-    color:white;
-
-    font-size:16px;
-
-    cursor:pointer;
-
-    box-shadow:
-        0 8px 20px
-        rgba(90,20,30,.20);
-}
-
-
-/* =========================
-   MUSIC BUTTON
-========================= */
-
-.music-btn{
-
-    position:fixed;
-
-    top:15px;
-    right:15px;
-
-    z-index:100;
-
-    width:45px;
-    height:45px;
-
-    border:none;
-
-    border-radius:50%;
-
-    background:#741b27;
-
-    color:white;
-
-    font-size:19px;
-
-    cursor:pointer;
-
-    box-shadow:
-        0 6px 17px
-        rgba(80,20,30,.25);
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:600px){
-
-    .cover-video{
-        width:94vw;
-        max-height:85svh;
-    }
-
-    .timer{
-        gap:5px;
-    }
-
-    .time-box{
-        padding:11px 2px;
-        border-radius:13px;
-    }
-
-    .time-box strong{
-        font-size:
-            clamp(23px,7vw,34px);
-    }
-
-    .location-crop{
-        width:96vw;
-        aspect-ratio:1.65 / 1;
-    }
-
-    .location-crop img{
-        top:-35%;
-    }
+  0%,100%{
+    opacity:.55;
+  }
+
+  50%{
+    opacity:1;
+  }
 
 }
 
 </style>
 
-</head>
-
-
-<body>
-
-
-<!-- MUSIC -->
-
-<audio
-id="bgMusic"
-loop
-preload="auto">
-
-<source
-src="music.mp3"
-type="audio/mpeg">
-
-</audio>
-
-
-<button
-class="music-btn"
-id="musicButton"
-onclick="toggleMusic(event)">
-
-🔊
-
-</button>
-
-
-<main id="app">
-
-
-<!-- =========================
-     PAGE 1 - VIDEO
-========================= -->
-
-<section
-class="page"
-id="videoPage">
-
-
-<video
-id="coverVideo"
-class="cover-video"
-src="envelope.mp4"
-playsinline
-preload="auto">
-</video>
-
-
-<div
-class="tap-text"
-id="tapText">
-
-اضغطي على الكرت لفتح الدعوة ✨
-
-</div>
-
-
-</section>
-
-
-<!-- =========================
-     PAGE 2 - INVITATION CARD
-========================= -->
-
-<section
-class="page"
-id="invitationPage">
-
-
-<img
-src="invitation.png"
-class="invitation-image"
-alt="دعوة ليلة الحنة">
-
-
-<div class="swipe-hint">
-
-اسحبي للأعلى للمتابعة ↑
-
-</div>
-
-
-</section>
-
-
-<!-- =========================
-     PAGE 3 - DANCE
-========================= -->
-
-<section
-class="page"
-id="dance">
-
-
-<div
-class="dance-wrap">
-
-
-<h1
-class="dance-title">
-
-ليلة الحنّة ✨
-
-</h1>
-
-
-<img
-id="dancer"
-src="girl1.png"
-alt="رقصة فلسطينية">
-
-
-<div class="swipe-hint">
-
-اسحبي للأعلى للمتابعة ↑
-
-</div>
-
-
-</div>
-
-
-</section>
-
-
-<!-- =========================
-     PAGE 4 - COUNTDOWN
-========================= -->
-
-<section
-class="page"
-id="location">
-
-
-<h1
-class="section-title">
-
-العد التنازلي للحنّة
-
-</h1>
-
-
-<div
-class="gold-line">
-</div>
-
-
-<div
-class="timer">
-
-
-<div class="time-box">
-<strong id="days">0</strong>
-<span>يوم</span>
-</div>
-
-
-<div class="time-box">
-<strong id="hours">00</strong>
-<span>ساعة</span>
-</div>
-
-
-<div class="time-box">
-<strong id="minutes">00</strong>
-<span>دقيقة</span>
-</div>
-
-
-<div class="time-box">
-<strong id="seconds">00</strong>
-<span>ثانية</span>
-</div>
-
-
-</div>
-
-
-<h2
-class="location-title">
-
-موقع الحنّة
-
-</h2>
-
-
-<div
-class="gold-line">
-</div>
-
-
-<div
-class="location-crop">
-
-<img
-src="countdown.png"
-alt="موقع الحنة">
-
-</div>
-
-
-<button
-class="map-btn"
-onclick="openMap()">
-
-📍 افتحي الموقع على الخريطة
-
-</button>
-
-
-</section>
-
-
-</main>
-
 
 <script>
 
-
-/* =========================
-   START AT TOP
-========================= */
-
-history.scrollRestoration =
-"manual";
-
-
-window.addEventListener(
-"load",
-function(){
-
-    const app =
-    document.getElementById(
-        "app"
-    );
-
-    app.scrollTop=0;
-
-});
-
-
-/* =========================
-   MUSIC
-========================= */
-
-const bgMusic =
-document.getElementById(
-    "bgMusic"
-);
-
-
-const musicButton =
-document.getElementById(
-    "musicButton"
-);
-
-
-let musicStarted=false;
-
-
-function startMusic(){
-
-    bgMusic
-    .play()
-    .then(function(){
-
-        musicStarted=true;
-
-        musicButton
-        .textContent="🔊";
-
-    })
-    .catch(function(){
-
-        console.log(
-            "Music blocked"
-        );
-
-    });
-
-}
-
-
-function toggleMusic(event){
-
-    event.stopPropagation();
-
-
-    if(
-        bgMusic.paused
-    ){
-
-        bgMusic.play();
-
-        musicStarted=true;
-
-        musicButton
-        .textContent="🔊";
-
-    }
-
-    else{
-
-        bgMusic.pause();
-
-        musicButton
-        .textContent="🔇";
-
-    }
-
-}
-
-
-/* =========================
-   VIDEO
-========================= */
-
 const videoPage =
-document.getElementById(
-    "videoPage"
-);
-
+document.getElementById("videoPage");
 
 const coverVideo =
-document.getElementById(
-    "coverVideo"
-);
-
+document.getElementById("coverVideo");
 
 const tapText =
-document.getElementById(
-    "tapText"
-);
+document.getElementById("tapText");
+
+let videoStarted = false;
 
 
-let videoStarted=false;
+/* عند الضغط على الكرت يبدأ الفيديو */
 
+function startVideo(){
 
-function playOpeningVideo(){
+  if(videoStarted){
+    return;
+  }
 
-    if(videoStarted){
-        return;
-    }
+  videoStarted = true;
 
+  tapText.style.display = "none";
 
-    videoStarted=true;
+  coverVideo.currentTime = 0;
 
+  coverVideo.play()
+  .catch(function(){
 
-    tapText.style.display=
-    "none";
+    videoStarted = false;
 
+    tapText.style.display = "block";
 
-    coverVideo.currentTime=0;
-
-
-    coverVideo
-    .play()
-    .catch(function(){
-
-        videoStarted=false;
-
-    });
+  });
 
 }
 
 
-/* الضغط يشغل الفيديو */
+/* كمبيوتر */
 
-videoPage
-.addEventListener(
-    "click",
-    playOpeningVideo
+videoPage.addEventListener(
+  "click",
+  startVideo
 );
 
 
-videoPage
-.addEventListener(
-    "touchend",
-    function(event){
+/* موبايل */
 
-        event.preventDefault();
+videoPage.addEventListener(
+  "touchend",
+  function(event){
 
-        playOpeningVideo();
+    event.preventDefault();
 
-    },
-    {
-        passive:false
-    }
+    startVideo();
+
+  },
+  { passive:false }
 );
 
 
-/* =========================
-   AFTER VIDEO
-========================= */
+/* لما يخلص الفيديو ينتقل للكرت */
 
-coverVideo
-.addEventListener(
-"ended",
-function(){
+coverVideo.addEventListener(
+  "ended",
+  function(){
 
+    const nextPage =
+    document.getElementById("invitationPage");
 
-    document
-    .getElementById(
-        "invitationPage"
-    )
-    .scrollIntoView({
+    if(nextPage){
 
+      nextPage.scrollIntoView({
         behavior:"smooth"
-
-    });
-
-
-    setTimeout(
-    function(){
-
-        startMusic();
-
-    },
-    600
-    );
-
-});
-
-
-/* =========================
-   GIRL DANCE
-========================= */
-
-const dancer =
-document.getElementById(
-    "dancer"
-);
-
-
-const frames=[
-
-    "girl1.png",
-
-    "girl2.png",
-
-    "girl3.png",
-
-    "girl4.png",
-
-    "girl3.png",
-
-    "girl2.png"
-
-];
-
-
-frames.forEach(
-function(src){
-
-    const image =
-    new Image();
-
-    image.src =
-    src;
-
-});
-
-
-let frameIndex=0;
-
-
-setInterval(
-function(){
-
-    frameIndex=
-        (
-            frameIndex+1
-        )
-        %
-        frames.length;
-
-
-    dancer.src=
-        frames[
-            frameIndex
-        ];
-
-},
-380
-);
-
-
-/* =========================
-   COUNTDOWN
-========================= */
-
-const eventDate =
-new Date(
-    "2027-07-07T19:00:00+03:00"
-)
-.getTime();
-
-
-function updateCountdown(){
-
-    let distance =
-        eventDate
-        -
-        Date.now();
-
-
-    if(distance<0){
-
-        distance=0;
+      });
 
     }
 
-
-    const days =
-    Math.floor(
-        distance
-        /
-        86400000
-    );
-
-
-    const hours =
-    Math.floor(
-        (
-            distance
-            %
-            86400000
-        )
-        /
-        3600000
-    );
-
-
-    const minutes =
-    Math.floor(
-        (
-            distance
-            %
-            3600000
-        )
-        /
-        60000
-    );
-
-
-    const seconds =
-    Math.floor(
-        (
-            distance
-            %
-            60000
-        )
-        /
-        1000
-    );
-
-
-    document
-    .getElementById(
-        "days"
-    )
-    .textContent=
-        days;
-
-
-    document
-    .getElementById(
-        "hours"
-    )
-    .textContent=
-        String(hours)
-        .padStart(
-            2,
-            "0"
-        );
-
-
-    document
-    .getElementById(
-        "minutes"
-    )
-    .textContent=
-        String(minutes)
-        .padStart(
-            2,
-            "0"
-        );
-
-
-    document
-    .getElementById(
-        "seconds"
-    )
-    .textContent=
-        String(seconds)
-        .padStart(
-            2,
-            "0"
-        );
-
-}
-
-
-updateCountdown();
-
-
-setInterval(
-    updateCountdown,
-    1000
+  }
 );
-
-
-/* =========================
-   MAP
-========================= */
-
-function openMap(){
-
-    window.open(
-
-        "https://maps.app.goo.gl/MucwsVVYP3ixZqaX6",
-
-        "_blank"
-
-    );
-
-}
 
 </script>
-
-
-</body>
-</html>
