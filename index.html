@@ -1,109 +1,73 @@
-<!-- ===== فيديو فتح الدعوة ===== -->
-
 <section id="videoPage">
 
   <video
     id="coverVideo"
     src="envelope.mp4"
     playsinline
-    preload="auto">
-  </video>
+    preload="auto"
+  ></video>
 
   <div id="tapText">
-    اضغطي على الكرت لفتح الدعوة ✨
+    اضغطي على الفيديو لفتح الدعوة ✨
   </div>
 
 </section>
-
 
 <style>
 
 #videoPage{
   width:100%;
   min-height:100vh;
-
   display:flex;
   justify-content:center;
   align-items:center;
-
   position:relative;
-
   background:#f8efe2;
-
   cursor:pointer;
-
   overflow:hidden;
 }
 
 #coverVideo{
-  width:min(95vw,600px);
-  max-height:90vh;
-
+  width:min(94vw,600px);
+  max-height:88vh;
   object-fit:contain;
-
-  border-radius:18px;
-
   display:block;
+  border-radius:18px;
+  background:#000;
 }
 
 #tapText{
   position:absolute;
-
-  bottom:25px;
-
+  bottom:28px;
   width:100%;
-
   text-align:center;
-
   color:#741b27;
-
-  font-family:Tahoma,Arial,sans-serif;
-
   font-size:18px;
-
+  font-family:Tahoma,Arial,sans-serif;
   animation:pulse 1.5s infinite;
-
   pointer-events:none;
 }
 
 @keyframes pulse{
-
-  0%,100%{
-    opacity:.55;
-  }
-
-  50%{
-    opacity:1;
-  }
-
+  0%,100%{opacity:.55;}
+  50%{opacity:1;}
 }
 
 </style>
 
-
 <script>
 
-const videoPage =
-document.getElementById("videoPage");
+const videoPage = document.getElementById("videoPage");
+const coverVideo = document.getElementById("coverVideo");
+const tapText = document.getElementById("tapText");
 
-const coverVideo =
-document.getElementById("coverVideo");
+let started = false;
 
-const tapText =
-document.getElementById("tapText");
+function playEnvelopeVideo(){
 
-let videoStarted = false;
+  if(started) return;
 
-
-/* عند الضغط على الكرت يبدأ الفيديو */
-
-function startVideo(){
-
-  if(videoStarted){
-    return;
-  }
-
-  videoStarted = true;
+  started = true;
 
   tapText.style.display = "none";
 
@@ -111,57 +75,21 @@ function startVideo(){
 
   coverVideo.play()
   .catch(function(){
-
-    videoStarted = false;
-
+    started = false;
     tapText.style.display = "block";
-
   });
-
 }
 
+videoPage.addEventListener("click", playEnvelopeVideo);
 
-/* كمبيوتر */
+coverVideo.addEventListener("ended", function(){
 
-videoPage.addEventListener(
-  "click",
-  startVideo
-);
+  document
+    .getElementById("invitationPage")
+    .scrollIntoView({
+      behavior:"smooth"
+    });
 
-
-/* موبايل */
-
-videoPage.addEventListener(
-  "touchend",
-  function(event){
-
-    event.preventDefault();
-
-    startVideo();
-
-  },
-  { passive:false }
-);
-
-
-/* لما يخلص الفيديو ينتقل للكرت */
-
-coverVideo.addEventListener(
-  "ended",
-  function(){
-
-    const nextPage =
-    document.getElementById("invitationPage");
-
-    if(nextPage){
-
-      nextPage.scrollIntoView({
-        behavior:"smooth"
-      });
-
-    }
-
-  }
-);
+});
 
 </script>
