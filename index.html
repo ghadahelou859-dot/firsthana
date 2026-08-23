@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>ليلة حنة رأفت ورنين</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    font-family:Tahoma, Arial, sans-serif;
+    background:#f7efe2;
+    color:#6f1824;
+}
+
+
+/* =========================
+   الصفحات
+========================= */
+
+.page{
+    width:100%;
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:
+    linear-gradient(
+        180deg,
+        #fffaf3,
+        #f4e8d7
+    );
+}
+
+
+/* =========================
+   صفحة الظرف
+========================= */
+
+#cover{
+    min-height:100vh;
+}
+
+
+.envelope-container{
+
+    width:min(92vw,720px);
+
+    height:620px;
+
+    position:relative;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+
+.envelope{
+
+    position:absolute;
+
+    width:min(90vw,700px);
+
+    height:auto;
+
+    transition:
+    all 1.2s ease;
+
+    filter:
+    drop-shadow(
+        0 18px 25px
+        rgba(80,50,30,.18)
+    );
+
+}
+
+
+#closedEnvelope{
+
+    z-index:5;
+
+    cursor:pointer;
+
+}
+
+
+#openEnvelope{
+
+    z-index:2;
+
+    opacity:0;
+
+    transform:
+    translateY(40px)
+    scale(.95);
+
+}
+
+
+/* بطاقة الدعوة داخل الظرف */
+
+#card{
+
+    position:absolute;
+
+    width:min(65vw,380px);
+
+    max-height:72vh;
+
+    object-fit:contain;
+
+    opacity:0;
+
+    z-index:3;
+
+    transform:
+    translateY(160px)
+    scale(.7);
+
+    transition:
+    all 1.4s ease;
+
+    filter:
+    drop-shadow(
+        0 14px 22px
+        rgba(60,40,20,.20)
+    );
+
+}
+
+
+/* بعد فتح الظرف */
+
+.envelope-container.open
+#closedEnvelope{
+
+    opacity:0;
+
+    transform:
+    scale(.85)
+    translateY(80px);
+
+}
+
+
+.envelope-container.open
+#openEnvelope{
+
+    opacity:1;
+
+    transform:
+    translateY(100px)
+    scale(1);
+
+}
+
+
+.envelope-container.open
+#card{
+
+    opacity:1;
+
+    transform:
+    translateY(-100px)
+    scale(.9);
+
+}
+
+
+.open-text{
+
+    position:absolute;
+
+    bottom:60px;
+
+    font-size:18px;
+
+    color:#6f1824;
+
+    animation:pulse 1.6s infinite;
+
+}
+
+
+@keyframes pulse{
+
+    0%,100%{
+        opacity:.6;
+    }
+
+    50%{
+        opacity:1;
+    }
+
+}
+
+
+/* =========================
+   أزرار التنقل
+========================= */
+
+.next-btn{
+
+    position:absolute;
+
+    bottom:22px;
+
+    left:50%;
+
+    transform:
+    translateX(-50%);
+
+    border:none;
+
+    padding:
+    12px 24px;
+
+    border-radius:
+    30px;
+
+    background:#741b27;
+
+    color:white;
+
+    font-size:15px;
+
+    cursor:pointer;
+
+    box-shadow:
+    0 7px 18px
+    rgba(90,20,30,.25);
+
+}
+
+
+/* =========================
+   صورة الدعوة
+========================= */
+
+.invitation-image{
+
+    width:100%;
+
+    max-width:650px;
+
+    max-height:100vh;
+
+    object-fit:contain;
+
+    display:block;
+
+}
+
+
+/* =========================
+   الرقصة
+========================= */
+
+#dance{
+
+    background:
+    radial-gradient(
+        circle,
+        #fffaf3,
+        #f2e4cf
+    );
+
+}
+
+
+.dance-box{
+
+    width:100%;
+
+    min-height:100vh;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+
+.dance-title{
+
+    position:absolute;
+
+    top:35px;
+
+    font-size:
+    clamp(28px,7vw,45px);
+
+    color:#741b27;
+
+}
+
+
+#dancer{
+
+    width:min(90vw,600px);
+
+    height:82vh;
+
+    object-fit:contain;
+
+}
+
+
+/* =========================
+   العد التنازلي والموقع
+========================= */
+
+#location{
+
+    flex-direction:column;
+
+    padding:
+    30px 15px 90px;
+
+}
+
+
+.countdown-title{
+
+    margin:
+    10px 0 25px;
+
+    font-size:
+    clamp(27px,6vw,42px);
+
+}
+
+
+.timer{
+
+    width:min(95%,700px);
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:10px;
+
+    margin-bottom:25px;
+
+}
+
+
+.time-box{
+
+    background:
+    rgba(255,250,242,.95);
+
+    border:
+    1px solid #c69a53;
+
+    border-radius:
+    18px;
+
+    text-align:center;
+
+    padding:
+    15px 4px;
+
+    box-shadow:
+    0 6px 17px
+    rgba(100,60,30,.07);
+
+}
+
+
+.time-box strong{
+
+    display:block;
+
+    font-size:
+    clamp(27px,6vw,48px);
+
+    color:#741b27;
+
+}
+
+
+.time-box span{
+
+    font-size:
+    clamp(12px,3vw,17px);
+
+}
+
+
+/* صورة تصميم الموقع */
+
+.location-design{
+
+    width:min(95vw,900px);
+
+    max-height:58vh;
+
+    object-fit:contain;
+
+    margin-top:15px;
+
+}
+
+
+/* زر خرائط */
+
+.map-btn{
+
+    margin-top:25px;
+
+    border:none;
+
+    border-radius:30px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #7c1d29,
+        #591019
+    );
+
+    color:white;
+
+    padding:
+    15px 30px;
+
+    font-size:17px;
+
+    cursor:pointer;
+
+    box-shadow:
+    0 10px 22px
+    rgba(100,20,30,.25);
+
+}
+
+
+/* =========================
+   موبايل
+========================= */
+
+@media(max-width:600px){
+
+    .envelope-container{
+
+        height:520px;
+
+    }
+
+
+    #card{
+
+        width:62vw;
+
+    }
+
+
+    .timer{
+
+        gap:6px;
+
+    }
+
+
+    .time-box{
+
+        padding:
+        11px 2px;
+
+    }
+
+
+    .location-design{
+
+        width:100%;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================
+     الصفحة الأولى
+     الظرف
+===================== -->
+
+<section
+class="page"
+id="cover">
+
+
+<div
+class="envelope-container"
+id="envelopeContainer">
+
+
+<img
+src="invitation.png"
+id="card"
+alt="دعوة الحنة">
+
+
+<img
+src="envelope-open.png"
+class="envelope"
+id="openEnvelope"
+alt="">
+
+
+<img
+src="envelope-closed.png"
+class="envelope"
+id="closedEnvelope"
+alt="افتح الدعوة">
+
+
+<div
+class="open-text"
+id="openText">
+
+اضغطي على الظرف لفتح الدعوة ✨
+
+</div>
+
+
+</div>
+
+
+<button
+class="next-btn"
+id="nextInvitation"
+style="display:none"
+onclick="goToPage('invitationPage')">
+
+مشاهدة الدعوة ↓
+
+</button>
+
+
+</section>
+
+
+
+<!-- =====================
+     الصفحة الثانية
+     الدعوة
+===================== -->
+
+<section
+class="page"
+id="invitationPage">
+
+
+<img
+src="invitation.png"
+class="invitation-image"
+alt="دعوة ليلة الحنة">
+
+
+<button
+class="next-btn"
+onclick="goToPage('dance')">
+
+شوفي الرقصة ↓
+
+</button>
+
+
+</section>
+
+
+
+<!-- =====================
+     الصفحة الثالثة
+     الرقصة
+===================== -->
+
+<section
+class="page"
+id="dance">
+
+
+<div class="dance-box">
+
+
+<div class="dance-title">
+
+ليلة الحنّة ✨
+
+</div>
+
+
+<img
+src="girl1.png"
+id="dancer"
+alt="رقصة فلسطينية">
+
+
+</div>
+
+
+<button
+class="next-btn"
+onclick="goToPage('location')">
+
+العد التنازلي والموقع ↓
+
+</button>
+
+
+</section>
+
+
+
+<!-- =====================
+     الصفحة الرابعة
+     العد والموقع
+===================== -->
+
+<section
+class="page"
+id="location">
+
+
+<h1 class="countdown-title">
+
+العد التنازلي للحنة
+
+</h1>
+
+
+
+<div class="timer">
+
+
+<div class="time-box">
+
+<strong id="days">
+0
+</strong>
+
+<span>
+يوم
+</span>
+
+</div>
+
+
+
+<div class="time-box">
+
+<strong id="hours">
+00
+</strong>
+
+<span>
+ساعة
+</span>
+
+</div>
+
+
+
+<div class="time-box">
+
+<strong id="minutes">
+00
+</strong>
+
+<span>
+دقيقة
+</span>
+
+</div>
+
+
+
+<div class="time-box">
+
+<strong id="seconds">
+00
+</strong>
+
+<span>
+ثانية
+</span>
+
+</div>
+
+
+</div>
+
+
+
+<img
+src="countdown.png"
+class="location-design"
+alt="موقع الحنة">
+
+
+
+<button
+class="map-btn"
+onclick="openMap()">
+
+📍 افتحي موقع الحنّة
+
+</button>
+
+
+</section>
+
+
+
+<script>
+
+/* =====================
+   الانتقال بين الصفحات
+===================== */
+
+function goToPage(id){
+
+    document
+    .getElementById(id)
+    .scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+
+/* =====================
+   فتح الظرف
+===================== */
+
+const envelope =
+document.getElementById(
+    "envelopeContainer"
+);
+
+
+const closedEnvelope =
+document.getElementById(
+    "closedEnvelope"
+);
+
+
+const openText =
+document.getElementById(
+    "openText"
+);
+
+
+const nextInvitation =
+document.getElementById(
+    "nextInvitation"
+);
+
+
+
+closedEnvelope
+.addEventListener(
+"click",
+function(){
+
+    envelope
+    .classList
+    .add("open");
+
+
+    openText
+    .style
+    .display="none";
+
+
+    setTimeout(
+    function(){
+
+        nextInvitation
+        .style
+        .display="block";
+
+    },
+    1500
+    );
+
+});
+
+
+/* =====================
+   حركة البنت
+===================== */
+
+const dancer =
+document.getElementById(
+    "dancer"
+);
+
+
+const danceFrames = [
+
+    "girl1.png",
+
+    "girl2.png",
+
+    "girl3.png",
+
+    "girl4.png",
+
+    "girl3.png",
+
+    "girl2.png"
+
+];
+
+
+/* تحميل الصور مسبقا */
+
+danceFrames
+.forEach(
+function(src){
+
+    const img =
+    new Image();
+
+    img.src =
+    src;
+
+});
+
+
+let currentFrame=0;
+
+
+setInterval(
+function(){
+
+    currentFrame++;
+
+    if(
+        currentFrame
+        >=
+        danceFrames.length
+    ){
+
+        currentFrame=0;
+
+    }
+
+
+    dancer.src =
+    danceFrames[
+        currentFrame
+    ];
+
+},
+350
+);
+
+
+/* =====================
+   العد التنازلي
+
+   07/07/2027
+   الساعة 7 مساء
+   فلسطين
+===================== */
+
+const eventDate =
+new Date(
+"2027-07-07T19:00:00+03:00"
+).getTime();
+
+
+
+function updateCountdown(){
+
+    let distance =
+    eventDate
+    -
+    new Date().getTime();
+
+
+    if(distance < 0){
+
+        distance=0;
+
+    }
+
+
+    const days =
+    Math.floor(
+        distance /
+        (1000*60*60*24)
+    );
+
+
+    const hours =
+    Math.floor(
+        (
+            distance %
+            (1000*60*60*24)
+        )
+        /
+        (1000*60*60)
+    );
+
+
+    const minutes =
+    Math.floor(
+        (
+            distance %
+            (1000*60*60)
+        )
+        /
+        (1000*60)
+    );
+
+
+    const seconds =
+    Math.floor(
+        (
+            distance %
+            (1000*60)
+        )
+        /
+        1000
+    );
+
+
+    document
+    .getElementById("days")
+    .innerText =
+    days;
+
+
+    document
+    .getElementById("hours")
+    .innerText =
+    String(hours)
+    .padStart(2,"0");
+
+
+    document
+    .getElementById("minutes")
+    .innerText =
+    String(minutes)
+    .padStart(2,"0");
+
+
+    document
+    .getElementById("seconds")
+    .innerText =
+    String(seconds)
+    .padStart(2,"0");
+
+}
+
+
+updateCountdown();
+
+
+setInterval(
+updateCountdown,
+1000
+);
+
+
+/* =====================
+   موقع الحنة
+===================== */
+
+function openMap(){
+
+    window.open(
+        "https://maps.app.goo.gl/MucwsVVYP3ixZqaX6",
+        "_blank"
+    );
+
+}
+
+</script>
+
+
+</body>
+
+</html>
