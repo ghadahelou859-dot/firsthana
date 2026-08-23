@@ -115,12 +115,11 @@ body{
     50%{
         opacity:1;
     }
-
 }
 
 
 /* =========================
-   PAGE 2 - INVITATION CARD
+   PAGE 2 - INVITATION
 ========================= */
 
 #invitationPage{
@@ -183,7 +182,6 @@ body{
             translateX(-50%)
             translateY(-5px);
     }
-
 }
 
 
@@ -287,7 +285,7 @@ body{
 }
 
 
-/* العد الحقيقي */
+/* COUNTDOWN */
 
 .timer{
 
@@ -434,7 +432,7 @@ body{
 
 
 /* =========================
-   MUSIC
+   MUSIC BUTTON
 ========================= */
 
 .music-btn{
@@ -493,9 +491,7 @@ body{
     }
 
     .location-crop{
-
         width:96vw;
-
         aspect-ratio:1.65 / 1;
     }
 
@@ -506,11 +502,14 @@ body{
 }
 
 </style>
+
 </head>
 
 
 <body>
 
+
+<!-- MUSIC -->
 
 <audio
 id="bgMusic"
@@ -568,7 +567,7 @@ id="tapText">
 
 
 <!-- =========================
-     PAGE 2 - CARD
+     PAGE 2 - INVITATION CARD
 ========================= -->
 
 <section
@@ -659,54 +658,26 @@ class="timer">
 
 
 <div class="time-box">
-
-<strong id="days">
-0
-</strong>
-
-<span>
-يوم
-</span>
-
+<strong id="days">0</strong>
+<span>يوم</span>
 </div>
 
 
 <div class="time-box">
-
-<strong id="hours">
-00
-</strong>
-
-<span>
-ساعة
-</span>
-
+<strong id="hours">00</strong>
+<span>ساعة</span>
 </div>
 
 
 <div class="time-box">
-
-<strong id="minutes">
-00
-</strong>
-
-<span>
-دقيقة
-</span>
-
+<strong id="minutes">00</strong>
+<span>دقيقة</span>
 </div>
 
 
 <div class="time-box">
-
-<strong id="seconds">
-00
-</strong>
-
-<span>
-ثانية
-</span>
-
+<strong id="seconds">00</strong>
+<span>ثانية</span>
 </div>
 
 
@@ -755,7 +726,7 @@ onclick="openMap()">
 
 
 /* =========================
-   البداية
+   START AT TOP
 ========================= */
 
 history.scrollRestoration =
@@ -777,7 +748,7 @@ function(){
 
 
 /* =========================
-   عناصر الموسيقى
+   MUSIC
 ========================= */
 
 const bgMusic =
@@ -901,7 +872,7 @@ function playOpeningVideo(){
 }
 
 
-/* أول ضغطة تشغل الفيديو */
+/* الضغط يشغل الفيديو */
 
 videoPage
 .addEventListener(
@@ -927,8 +898,7 @@ videoPage
 
 
 /* =========================
-   بعد انتهاء الفيديو
-   الانتقال للكرت فقط
+   AFTER VIDEO
 ========================= */
 
 coverVideo
@@ -947,10 +917,6 @@ function(){
 
     });
 
-
-    /*
-       الموسيقى تبدأ بعد انتهاء الفيديو
-    */
 
     setTimeout(
     function(){
